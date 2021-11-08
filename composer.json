@@ -19,14 +19,22 @@
 			"name": "Filip Procházka",
 			"homepage": "http://filip-prochazka.com",
 			"email": "filip@prochazka.su"
+		},
+		{
+			"name": "Nathan Smith",
+			"homepage": "https://nathan.services",
+			"email": "nathanjosiah@gmail.com"
 		}
 	],
 	"support": {
-		"email": "filip@prochazka.su",
-		"issues": "https://github.com/Kdyby/ParseUseStatements/issues"
+		"email": "nathanjosiah@gmail.com",
+		"issues": "https://github.com/nathanjosiah/ParseUseStatements/issues"
+	},
+	"require": {
+		"php": ">=7.4"
 	},
 	"require-dev": {
-		"nette/tester": "~1.7"
+		"phpunit/phpunit": "^9.5"
 	},
 	"autoload": {
 		"psr-4": {

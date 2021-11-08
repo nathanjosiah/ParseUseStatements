@@ -1,2 +1,4 @@
+.idea
+test/.phpunit.result.cache
 vendor
 composer.lock
