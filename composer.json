@@ -1,6 +1,7 @@
 {
-	"name": "kdyby/parse-use-statements",
+	"name": "nathanjosiah/parse-use-statements",
 	"type": "library",
+	"version": "0.3.0",
 	"description": "Parse use statements for a reflection object",
 	"keywords": ["kdyby", "use", "uses", "usages", "import", "statement", "parse", "expand", "class", "reflection"],
 	"homepage": "http://kdyby.org",
@@ -23,9 +24,6 @@
 	"support": {
 		"email": "filip@prochazka.su",
 		"issues": "https://github.com/Kdyby/ParseUseStatements/issues"
-	},
-	"require": {
-		"php": ">=5.4"
 	},
 	"require-dev": {
 		"nette/tester": "~1.7"
