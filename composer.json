@@ -42,6 +42,6 @@
 		}
 	},
 	"autoload-dev": {
-		"classmap": ["tests"]
+		"classmap": ["test"]
 	}
 }
