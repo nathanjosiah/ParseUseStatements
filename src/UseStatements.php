@@ -92,6 +92,12 @@ class UseStatements
      */
     public static function parseUseStatements($code, $forClass = NULL)
     {
+        if (version_compare(\PHP_VERSION, "8.0.0", "<")) {
+            $lookForTokens = [T_STRING, T_NS_SEPARATOR];
+        } else {
+            $lookForTokens = [T_STRING, T_NS_SEPARATOR, T_NAME_QUALIFIED, T_NAME_FULLY_QUALIFIED];
+
+        }
         self::$tokenIndex = 0;
         $tokens = token_get_all($code);
         $namespace = $class = $classLevel = $level = NULL;
@@ -102,7 +108,7 @@ class UseStatements
             self::$tokenIndex++;
             switch (is_array($token) ? $token[0] : $token) {
                 case T_NAMESPACE:
-                    $namespace = ltrim(self::fetch($tokens, [T_STRING, T_NS_SEPARATOR, T_NAME_QUALIFIED]) . '\\', '\\');
+                    $namespace = ltrim(self::fetch($tokens, $lookForTokens) . '\\', '\\');
                     $uses = [];
                     break;
 
@@ -120,10 +126,10 @@ class UseStatements
                     break;
 
                 case T_USE:
-                    while (!$class && ($name = self::fetch($tokens, [T_STRING, T_NS_SEPARATOR, T_NAME_QUALIFIED, T_NAME_FULLY_QUALIFIED]))) {
+                    while (!$class && ($name = self::fetch($tokens, $lookForTokens))) {
                         $name = ltrim($name, '\\');
                         if (self::fetch($tokens, '{')) {
-                            while ($suffix = self::fetch($tokens, [T_STRING, T_NS_SEPARATOR, T_NAME_QUALIFIED, T_NAME_FULLY_QUALIFIED])) {
+                            while ($suffix = self::fetch($tokens, $lookForTokens)) {
                                 if (self::fetch($tokens, T_AS)) {
                                     $uses[self::fetch($tokens, T_STRING)] = $name . $suffix;
                                 } else {
